@@ -20,9 +20,10 @@ module.exports = {
                 id=""+Math.floor(Date.now() / 1000)+Math.floor(Math.random() * 101);  
                 bcrypt.hash(req.body.password, 10, function(err, hash) {
                     if (err) return res.send('An error occured', 500);
-        
+                  token = jwt.sign({user: user.userid}, sails.config.secret.key);
+                
                 Users.create({role:"customer",userid:id,name:req.body.name,email:req.body.email,password:hash}).fetch().exec((err,data)=>{      
-                res.json({message:"Success",userid:data.userid})
+                res.json({message:"Success",userid:data.userid,token:token})
                 })})
             }
         }) 
