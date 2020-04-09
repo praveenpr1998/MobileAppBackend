@@ -79,5 +79,10 @@ module.exports = {
           }
       }}
       res.json(sum);  
+    },
+
+    itemsremoval: async function(req,res){
+        console.log(req.body.userid)
+        await Cartitems.destroy({userid:req.body.userid});
     }
 };
