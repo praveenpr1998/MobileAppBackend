@@ -12,26 +12,24 @@ var XLSX = require('xlsx');
 module.exports = {
   
     create:async function(req,res){
-        console.log(req.body)
-        Users.findOne({email:req.body.email},(err,data)=>{
-            if(data){
+       
+        Users.findOne({email:req.body.email},(err,dataa)=>{
+            if(dataa){
                 res.json({message:"Exists"})}
             else{
                 id=""+Math.floor(Date.now() / 1000)+Math.floor(Math.random() * 101);  
                 bcrypt.hash(req.body.password, 10, function(err, hash) {
                     if (err) return res.send('An error occured', 500);
-                  token = jwt.sign({user: user.userid}, sails.config.secret.key);
-                
+                   
                 Users.create({role:"customer",userid:id,name:req.body.name,email:req.body.email,password:hash}).fetch().exec((err,data)=>{      
-                res.json({message:"Success",userid:data.userid,token:token})
+                    token = jwt.sign({user: data.userid}, sails.config.secret.key);
+                    res.json({message:"Success",userid:data.userid,token:token})
                 })})
             }
         }) 
     },
 
     login:async function(req,res){   
-        
-
         Users.findOne({email:req.body.email},function (err,user){
         if(user){ 
             bcrypt.compare(req.body.password, user.password, function(err, valid) {
@@ -65,8 +63,10 @@ module.exports = {
         res.json({message:"valid"})
     },
     finduser:function(req,res){
+        console.log(req.body)
         if(req.body){
             Users.findOne({userid:req.body.userid},function(err,data){
+                console.log(data)
                 res.json(data.name);
             })
         }
