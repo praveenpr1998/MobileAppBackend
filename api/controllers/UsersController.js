@@ -63,10 +63,10 @@ module.exports = {
         res.json({message:"valid"})
     },
     finduser:function(req,res){
-        console.log(req.body)
+        
         if(req.body){
             Users.findOne({userid:req.body.userid},function(err,data){
-                console.log(data)
+                
                 res.json(data.name);
             })
         }
