@@ -34,7 +34,7 @@ module.exports.datastores = {
 
   mongodb: {
     adapter: 'sails-mongo',
-    url: 'mongodb://localhost:27017/products'
+    url: 'mongodb://developer:Test1234!@ds353738.mlab.com:53738/shopping-app-db'
     /***************************************************************************
     *                                                                          *
     * Want to use a different database during development?                     *
