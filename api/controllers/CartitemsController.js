@@ -7,7 +7,6 @@
 module.exports = {
   
     add:async function(req,res){
-        console.log("Dwd"+req.body);
         var cartItems = req.body || [];
         if (cartItems.length == 0) {
           return res.badRequest();
@@ -59,7 +58,6 @@ module.exports = {
           return res.badRequest();
          }
          Cartitems.destroy({userid:req.body.userid,productId:req.body.productId}).exec(async(err,data)=>{
-            console.log(req.body.productId)
             var uniqueUserData=await Cartitems.find({userid:req.body.userid});
            
                 res.json(uniqueUserData)
@@ -82,7 +80,7 @@ module.exports = {
     },
 
     itemsremoval: async function(req,res){
-        console.log(req.body.userid)
+        
         await Cartitems.destroy({userid:req.body.userid});
     }
 };
