@@ -11,7 +11,7 @@ var token;
 var XLSX = require('xlsx');
 module.exports = {
   
-    create:async function(req,res){
+    signup:async function(req,res){
        
         Users.findOne({email:req.body.email},(err,dataa)=>{
             if(dataa){
