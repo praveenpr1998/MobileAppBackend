@@ -8,18 +8,7 @@
 module.exports = {
 
   attributes: {
-    // userid:{
-    //   type:"number",
-    // required:true
-    // },
-    // orderid:{
-    //   type:'number',
-    //   required:true
-    // },
-    // totalamount:{
-    //   type:'number',
-    //   required:true
-    // }
+    
   },
    datastore:'mongodb'
 
