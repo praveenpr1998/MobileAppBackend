@@ -26,7 +26,7 @@ module.exports = {
       required:true
     },
     productId:{
-      type:"string",
+      type:"number",
       required:true
     },
     userid:{
